@@ -44,4 +44,39 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>("Record Deleted", HttpStatus.OK);
     }
+
+    @GetMapping("/employees/{name}")
+    public ResponseEntity<List<Employee>> findByName(@PathVariable String name) {
+        List<Employee> employees = employeeService.getEmployeesByName(name);
+
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/employees/{name}/{address}")
+    public ResponseEntity<Employee> findByName(@PathVariable String name, @PathVariable String address) {
+        Employee employees = employeeService.getEmployeeByNameAndAddress(name, address);
+
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/employees/sal/{salary}")
+    public ResponseEntity<List<Employee>> findBySalary(@PathVariable long salary) {
+        List<Employee> employees = employeeService.findBySalary(salary);
+
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/employees/addr/{address}")
+    public ResponseEntity<List<Employee>> findByAddress(@PathVariable String address) {
+        List<Employee> employees = employeeService.findByAddress(address);
+
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/employees/id/{id}/{name}")
+    public ResponseEntity<Employee> findByIdAndName(@PathVariable int id, @PathVariable String name) {
+        Employee employees = employeeService.findByIdAndName(id, name);
+
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
 }

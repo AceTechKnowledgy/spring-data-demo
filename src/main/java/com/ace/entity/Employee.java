@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 @Entity(name = "emp")
 @Table(name = "employee")
+@NamedQuery(name = "Employee.findBySalary", query = "SELECT e FROM emp e WHERE e.salary = ?1")
+@NamedNativeQuery(name = "Employee.findByAddress", query = "SELECT * FROM employee WHERE address = :addr", resultClass = Employee.class)
 public class Employee {
 
     @Id
